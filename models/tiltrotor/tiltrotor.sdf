@@ -1,3 +1,38 @@
+<!-- Quad-tiltrotor links and joints description
+
+LINKS
+base_link: main link of the model, embodies the mass and the inertia properties of the vehicle
+
+left_elevon: represents left elevon
+
+right_elevon: represents right elevon
+
+elevator: represents elevator
+
+rudder: represents rudder
+
+For N in {0,1,2,3}
+motor_N_link: Nth motor, connected to base_link via motor_N_joint which allows to rotate the motor forward
+
+rotor_N_link: Nth rotor which is pivoted with respect to motor_N_link
+
+
+JOINTS
+
+left_elevon_joint: connects left_elevon to base_link
+
+right_elevon_joint: connects right_elevon to base_link
+
+elevator_joint: connects elevator to base_link
+
+rudder_joint: connects rudder to base_link
+
+For N in {0,1,2,3}
+motor_N_joint: attaches motor_N_link to base_link, allows pivoting around y axis (motor tilt axis)
+
+rotor_N_joint: attaches rotor_N_link to motor_N_link, allows pivoting around z axis (rotor rotation axis) -->
+
+
 <sdf version='1.5'>
   <model name='tiltrotor'>
     <pose>0 0 0.246 0 0 0</pose>
@@ -235,6 +270,8 @@
       <velocity_decay/>
       <self_collide>0</self_collide>
     </link>
+
+
     <joint name='rotor_0_joint' type='revolute'>
       <child>rotor_0</child>
       <parent>motor_0</parent>
@@ -371,6 +408,8 @@
       <velocity_decay/>
       <self_collide>0</self_collide>
     </link>
+
+
     <joint name='rotor_1_joint' type='revolute'>
       <child>rotor_1</child>
       <parent>motor_1</parent>
@@ -387,7 +426,6 @@
         <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
     </joint>
-
 
 
     <link name='motor_2'>
@@ -509,6 +547,8 @@
       <velocity_decay/>
       <self_collide>0</self_collide>
     </link>
+
+
     <joint name='rotor_2_joint' type='revolute'>
       <child>rotor_2</child>
       <parent>motor_2</parent>
@@ -525,6 +565,7 @@
         <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
     </joint>
+
 
 <link name='motor_3'>
        <pose>-0.35 -0.35 0.02 0 0 0</pose>
@@ -645,6 +686,8 @@
       <velocity_decay/>
       <self_collide>0</self_collide>
     </link>
+
+
     <joint name='rotor_3_joint' type='revolute'>
       <child>rotor_3</child>
       <parent>motor_3</parent>
@@ -661,6 +704,7 @@
         <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
     </joint>
+
 
     <link name="left_elevon">
       <inertial>
@@ -691,6 +735,8 @@
         </material>
       </visual>
     </link>
+
+
     <link name="right_elevon">
       <inertial>
         <mass>0.00000001</mass>
@@ -720,6 +766,8 @@
         </material>
       </visual>
     </link>
+
+
     <link name="elevator">
       <inertial>
         <mass>0.00000001</mass>
@@ -748,6 +796,8 @@
         <pose>-0.5 0 0.05 0 0 0 </pose>
       </inertial>
     </link>
+
+
     <joint name='left_elevon_joint' type='revolute'>
       <parent>base_link</parent>
       <child>left_elevon</child>
@@ -769,6 +819,8 @@
         </ode>
       </physics>
     </joint>
+
+
     <joint name='right_elevon_joint' type='revolute'>
       <parent>base_link</parent>
       <child>right_elevon</child>
@@ -790,6 +842,8 @@
         </ode>
       </physics>
     </joint>
+
+
     <joint name='elevator_joint' type='revolute'>
       <parent>base_link</parent>
       <child>elevator</child>
@@ -811,6 +865,8 @@
         </ode>
       </physics>
     </joint>
+
+
     <joint name='rudder_joint' type='revolute'>
       <parent>base_link</parent>
       <child>rudder</child>
@@ -832,6 +888,8 @@
         </ode>
       </physics>
     </joint>
+
+
     <plugin name="left_wing" filename="libLiftDragPlugin.so">
       <a0>0.05984281113</a0>
       <cla>4.752798721</cla>
@@ -852,6 +910,8 @@
       </control_joint_name>
       <control_joint_rad_to_cl>-0.5</control_joint_rad_to_cl>
     </plugin>
+
+
     <plugin name="right_wing" filename="libLiftDragPlugin.so">
       <a0>0.05984281113</a0>
       <cla>4.752798721</cla>
@@ -872,6 +932,8 @@
       </control_joint_name>
       <control_joint_rad_to_cl>-0.5</control_joint_rad_to_cl>
     </plugin>
+
+
     <plugin name="elevator" filename="libLiftDragPlugin.so">
       <a0>-0.2</a0>
       <cla>4.752798721</cla>
@@ -892,6 +954,8 @@
       </control_joint_name>
       <control_joint_rad_to_cl>-4.0</control_joint_rad_to_cl>
     </plugin>
+
+
     <plugin name="rudder" filename="libLiftDragPlugin.so">
       <a0>0.0</a0>
       <cla>4.752798721</cla>
@@ -908,6 +972,8 @@
       <upward>0 1 0</upward>
       <link_name>base_link</link_name>
     </plugin>
+
+
     <plugin name='front_right_motor_model' filename='librotors_gazebo_motor_model.so'>
       <robotNamespace></robotNamespace>
       <jointName>rotor_0_joint</jointName>
@@ -925,6 +991,8 @@
       <motorSpeedPubTopic>/motor_speed/0</motorSpeedPubTopic>
       <rotorVelocitySlowdownSim>20</rotorVelocitySlowdownSim>
     </plugin>
+
+
     <plugin name='back_left_motor_model' filename='librotors_gazebo_motor_model.so'>
       <robotNamespace></robotNamespace>
       <jointName>rotor_1_joint</jointName>
@@ -942,6 +1010,8 @@
       <motorSpeedPubTopic>/motor_speed/1</motorSpeedPubTopic>
       <rotorVelocitySlowdownSim>20</rotorVelocitySlowdownSim>
     </plugin>
+
+
     <plugin name='front_left_motor_model' filename='librotors_gazebo_motor_model.so'>
       <robotNamespace></robotNamespace>
       <jointName>rotor_2_joint</jointName>
@@ -959,6 +1029,8 @@
       <motorSpeedPubTopic>/motor_speed/2</motorSpeedPubTopic>
       <rotorVelocitySlowdownSim>20</rotorVelocitySlowdownSim>
     </plugin>
+
+
     <plugin name='back_right_motor_model' filename='librotors_gazebo_motor_model.so'>
       <robotNamespace></robotNamespace>
       <jointName>rotor_3_joint</jointName>
@@ -976,6 +1048,8 @@
       <motorSpeedPubTopic>/motor_speed/3</motorSpeedPubTopic>
       <rotorVelocitySlowdownSim>20</rotorVelocitySlowdownSim>
     </plugin>
+
+
     <plugin name='rotors_gazebo_imu_plugin' filename='librotors_gazebo_imu_plugin.so'>
       <robotNamespace></robotNamespace>
       <linkName>tiltrotor/imu_link</linkName>
@@ -1003,10 +1077,14 @@
       <windGustForceMean>0</windGustForceMean>
     </plugin>
     -->
+
+
     <plugin name="gps_plugin" filename="libgazebo_gps_plugin.so">
         <robotNamespace></robotNamespace>
         <gpsNoise>true</gpsNoise>
     </plugin>
+
+
     <plugin name='mavlink_interface' filename='librotors_gazebo_mavlink_interface.so'>
       <robotNamespace></robotNamespace>
       <imuSubTopic>/imu</imuSubTopic>
