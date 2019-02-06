@@ -481,6 +481,8 @@ void GazeboMavlinkInterface::OnUpdate(const common::UpdateInfo&  /*_info*/) {
 
   std::unique_lock<std::mutex> lock(last_imu_message_mutex_);
 
+  gzdbg << "In OnUpdate" << ".\n";
+
   if (previous_imu_seq_ > 0) {
     while (previous_imu_seq_ == last_imu_message_.seq() && IsRunning()) {
       last_imu_message_cond_.wait_for(lock, std::chrono::milliseconds(10));
@@ -714,6 +716,7 @@ void GazeboMavlinkInterface::SendSensorMessages()
       mavlink_message_t msg;
       mavlink_msg_hil_sensor_encode_chan(1, 200, MAVLINK_COMM_0, &msg, &sensor_msg);
       send_mavlink_message(&msg);
+      gzdbg << "sent mavlink sensor message" << "\n";
     }
   }
 
@@ -1077,6 +1080,8 @@ void GazeboMavlinkInterface::handle_message(mavlink_message_t *msg, bool &receiv
 
     received_actuator = true;
     received_first_actuator_ = true;
+
+    gzdbg << "Received HIL_ACTUATOR_CONTROLS" << "\n";
     break;
   }
 }
