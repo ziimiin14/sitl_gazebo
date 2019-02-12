@@ -1081,7 +1081,7 @@ void GazeboMavlinkInterface::handle_message(mavlink_message_t *msg, bool &receiv
     received_actuator = true;
     received_first_actuator_ = true;
 
-    gzdbg << "Received HIL_ACTUATOR_CONTROLS" << "\n";
+    gzdbg << "Received HIL_ACTUATOR_CONTROLS (" << controls.time_usec << ", " << last_actuator_time_ << ")\n";
     break;
   }
 }
