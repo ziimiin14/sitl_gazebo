@@ -18,7 +18,6 @@ matrix:
     include:
         - name: CMake build (Gazebo 7)
           os: linux
-          language: cpp
           services:
             - docker
           cache:
@@ -28,7 +27,6 @@ matrix:
             - BUILD=${CMAKE_BUILD}
         - name: CMake unit tests build and run (Gazebo 7)
           os: linux
-          language: cpp
           services:
             - docker
           cache:
@@ -38,7 +36,6 @@ matrix:
             - BUILD=${CMAKE_UNIT_TEST_BUILD}
         - name: CMake build (Gazebo 9)
           os: linux
-          language: cpp
           services:
             - docker
           cache:
@@ -48,7 +45,6 @@ matrix:
             - BUILD=${CMAKE_BUILD}
         - name: CMake unit tests build and run (Gazebo 9)
           os: linux
-          language: cpp
           services:
             - docker
           cache:
@@ -58,7 +54,6 @@ matrix:
             - BUILD=${CMAKE_UNIT_TEST_BUILD}
         - name: Catkin build on Ubuntu 16.04 with ROS Kinetic (Gazebo 7)
           os: linux
-          language: cpp
           services:
             - docker
           cache:
@@ -68,7 +63,6 @@ matrix:
             - BUILD=${KINETIC}
         - name: Catkin build on Ubuntu 18.04 with ROS Melodic (Gazebo 9)
           os: linux
-          language: cpp
           services:
             - docker
           cache:
@@ -78,7 +72,6 @@ matrix:
             - BUILD=${MELODIC}
         - name: Validate SDF schemas
           os: linux
-          language: cpp
           services:
             - docker
           cache:
@@ -86,10 +79,9 @@ matrix:
           env:
             - PX4_DOCKER_REPO=px4io/px4-dev-simulation-bionic:2020-03-29
             - BUILD="source ./scripts/validate_sdf.bash"
-        - name: macOS Mojave (Xcode 11.3)
+        - name: macOS Catalina (Xcode 11.4)
           os: osx
-          osx_image: xcode11.3
-          language: cpp
+          osx_image: xcode11.4
           cache:
             ccache: true
 
