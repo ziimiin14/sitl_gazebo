@@ -1,0 +1,84 @@
+<?xml version='1.0' ?>
+<sdf version='1.6'>
+
+    <model name='my_vehicle'>
+        <include>
+            <uri>model://iris</uri>
+        </include>
+
+        <!--pmw3901 optical camera facing forward-->
+        <include>
+            <uri>model://pmw3901</uri>
+            <pose>0.1 0.03 0 0 0 0</pose>
+        </include>
+
+        <joint name="opticalflow_joint" type="fixed">
+            <parent>iris::base_link</parent>
+            <child>px4flow::link</child>
+        </joint>
+
+        <!--pmw3901_1 optical camera facing forward-->
+        <include>
+            <uri>model://pmw3901_1</uri>
+            <pose>0.1 -0.03 0 0 0 0</pose>
+        </include>
+
+        <joint name="opticalflow1_joint" type="fixed">
+            <parent>iris::base_link</parent>
+            <child>px4flow_1::link</child>
+        </joint>
+
+
+        <!--forward-facing lidar-->
+        <include>
+            <uri>model://lidar</uri>
+            <pose>0 0.02 0.06 0 0 0</pose>
+            <name>lidar0</name>
+        </include>
+
+        <joint name="lidar0_joint" type="fixed">
+            <parent>iris::base_link</parent>
+            <child>lidar0::link</child>
+        </joint>
+
+        <!--forward1-facing lidar-->
+        <include>
+            <uri>model://lidar</uri>
+            <pose>0 0.02 -0.06 0 0 0</pose>
+            <name>lidar1</name>
+        </include>
+
+        <joint name="lidar1_joint" type="fixed">
+            <parent>iris::base_link</parent>
+            <child>lidar1::link</child>
+        </joint>
+
+
+        <!--forward2-facing lidar-->
+        <include>
+            <uri>model://lidar</uri>
+            <pose>0 -0.02 0.06 0 0 0</pose>
+            <name>lidar2</name>
+        </include>
+
+        <joint name="lidar2_joint" type="fixed">
+            <parent>iris::base_link</parent>
+            <child>lidar2::link</child>
+        </joint>
+
+        <!--forward3-facing lidar-->
+        <include>
+            <uri>model://lidar</uri>
+            <pose>0 -0.02 -0.06 0 0 0</pose>
+            <name>lidar3</name>
+        </include>
+
+        <joint name="lidar3_joint" type="fixed">
+            <parent>iris::base_link</parent>
+            <child>lidar3::link</child>
+        </joint>
+
+    </model>
+</sdf>
+
+
